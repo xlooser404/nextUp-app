@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 import {connectDB} from './db/connectDB.js';
 // Importing the connectDB function to establish a database connection
 
@@ -12,6 +13,7 @@ const PORT = process.env.PORT || 5000;
 // Initialize the Express application
 
 app.use(express.json()); // Middleware to parse JSON request bodies
+app.use(cookieParser()); // Middleware to parse cookies from request headers
 
 
 app.get('/', (req, res) => {

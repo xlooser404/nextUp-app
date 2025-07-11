@@ -1,8 +1,12 @@
 import express from 'express';
-import { login, logout, signup, verifyEmail, forgotPassword, resetPassword } from '../controllers/auth.controller.js';
+import { login, logout, signup, verifyEmail, forgotPassword, resetPassword, checkAuth } from '../controllers/auth.controller.js';
+import { verifyToken } from '../middleware/verifyToken.js'; // Assuming you have a verifyToken middleware
 
 
 const router = express.Router();
+
+
+router.get('/check-auth', verifyToken, checkAuth); // Assuming you have a verifyToken middleware and checkAuth function in your controller
 
 router.post('/signup', signup); 
 router.post('/login', login);

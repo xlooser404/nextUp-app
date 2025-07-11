@@ -4,6 +4,7 @@ import crypto from 'crypto';
 import { generateTokenAndSetCookie } from '../utils/generateTokenAndSetCookie.js';
 import { sendVerificationEmail, sendWelcomeEmail, sendPasswordResetEmail, sendResetSuccessEmail } from '../emails/emails.js';
 
+
 export const signup = async (req, res) => {
     const { email, password, name } = req.body;
     // Validate input data
@@ -177,5 +178,26 @@ export const resetPassword = async (req, res) => {
     } catch (error) {
         console.error('Error in resetPassword:', error);
         res.status(500).json({ success: false, message: error.message });
+    }
+}
+
+export const checkAuth = async (req, res) => {
+    try {
+        const user = await User.findById(req.userId).select('-password'); // Exclude password from the response
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+
+        res.status(200).json({
+            success: true,
+            user: {
+                ...user._doc, // Spread the user document to include all fields
+                password: undefined, // Exclude the password field
+            }
+        });
+
+    } catch (error) {
+        console.error('Error in checkAuth:', error);
+        res.status(500).json({ success: false, message: 'Server error' });
     }
 }

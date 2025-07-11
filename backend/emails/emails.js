@@ -64,6 +64,7 @@ export const sendVerificationEmail = async (email, verificationToken) => {
 @param {string} resetURL - The URL for the password reset page.
 
  */
+
 export const sendPasswordResetEmail = async (email, resetURL) => {
     try {
         const mailOptions = {
@@ -83,9 +84,12 @@ export const sendPasswordResetEmail = async (email, resetURL) => {
 
 
 /**
+
  * Sends a confirmation email after a password has been successfully reset.
- * @param {string} email - The recipient's email address.
+@param {string} email - The recipient's email address.
+
  */
+
 export const sendResetSuccessEmail = async (email) => {
     try {
         const mailOptions = {

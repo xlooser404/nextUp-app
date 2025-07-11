@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
     default: false, // Default to false for unverified users
   },
   resetPasswordToken: String,
-  resetPasswordExpires: Date,
+  resetPasswordExpiresAt: Date,
   verificationToken: String,
   verificationTokenExpiresAt: Date,
 }, {

@@ -1,23 +1,20 @@
 import { create } from 'zustand';
 import axios from 'axios';
-// --- THE FIX IS HERE ---
-// You must import the 'toast' function to use it in this file.
 import { toast } from 'react-hot-toast';
 
-// Use the same pre-configured axios instance as your taskStore
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
   withCredentials: true,
 });
 
 export const useAuthStore = create((set) => ({
-  // --- STATE ---
+
   user: null,
   isAuthenticated: false,
   isLoading: false,
   error: null,
 
-  // --- ACTIONS ---
+
 
   // LOGIN ACTION
   login: async (email, password) => {
@@ -106,5 +103,40 @@ export const useAuthStore = create((set) => ({
         toast.error(errorMessage);
         return false; // Indicate failure
     }
-  }
+  },
+
+  // FORGOT PASSWORD ACTION
+forgetPassword: async (email) => {
+    set({ isLoading: true, error: null });
+    try {
+        await api.post('/auth/forgot-password', { email });
+        toast.success('If an account exists, a reset link has been sent.');
+
+    } catch (error) {
+        toast.success('If an account exists, a reset link has been sent.');
+        console.error("Forgot password API error:", error);
+    } finally {
+        set({ isLoading: false });
+    }
+},
+
+// RESET PASSWORD ACTION
+resetPassword: async (token, password) => {
+
+    set({ isLoading: true, error: null });
+    try {
+
+        await api.post(`/auth/reset-password/${token}`, { password });
+        return true; // Return true to the component.
+
+    } catch (error) {
+        const errorMessage = error.response?.data?.message || 'Failed to reset password. The link may be invalid or expired.';
+        set({ error: errorMessage }); // Set the error state for the UI.
+        toast.error(errorMessage);
+        return false; // Return false to the component.
+
+    } finally {
+        set({ isLoading: false });
+    }
+},
 }));

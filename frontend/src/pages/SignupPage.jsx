@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Lock, User, Loader, Eye, EyeOff } from 'lucide-react';
+import { Mail, Lock, User, Loader, Eye, EyeOff, ArrowLeft } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import PasswordStrengthMeter from '../components/PasswordStrengthMeter.jsx';
 import { useAuthStore } from '../store/authStore.js';
@@ -121,6 +121,7 @@ const SignupPage = () => {
                     </Link>
                 </p>
             </div>
+
         </motion.div>
     );
 };

@@ -4,6 +4,8 @@ import crypto from 'crypto';
 import { generateTokenAndSetCookie } from '../utils/generateTokenAndSetCookie.js';
 import { sendVerificationEmail, sendWelcomeEmail, sendPasswordResetEmail, sendResetSuccessEmail } from '../emails/emails.js';
 
+process.env.CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
+
 
 export const signup = async (req, res) => {
     const { email, password, name } = req.body;

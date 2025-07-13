@@ -31,14 +31,6 @@ export const sendVerificationEmail = async (email, verificationToken) => {
     }
 };
 
-/**
- * Sends a welcome email to a user after successful email verification.
-
- @param {string} email - The recipient's email address.
- @param {string} name - The recipient's name.
-
- */
-
  export const sendWelcomeEmail = async (email, name) => {
     try {
         const mailOptions = {
@@ -55,15 +47,6 @@ export const sendVerificationEmail = async (email, verificationToken) => {
         throw new Error(`Failed to send welcome email: ${error.message}`);
     }
 };
-
-
-/**
-
- * Sends a password reset link to the user.
-@param {string} email - The recipient's email address.
-@param {string} resetURL - The URL for the password reset page.
-
- */
 
 export const sendPasswordResetEmail = async (email, resetURL) => {
     try {
@@ -82,13 +65,6 @@ export const sendPasswordResetEmail = async (email, resetURL) => {
     }
 };
 
-
-/**
-
- * Sends a confirmation email after a password has been successfully reset.
-@param {string} email - The recipient's email address.
-
- */
 
 export const sendResetSuccessEmail = async (email) => {
     try {

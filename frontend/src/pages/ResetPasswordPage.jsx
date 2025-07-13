@@ -3,8 +3,11 @@ import { motion } from 'framer-motion';
 import { useAuthStore } from '../store/authStore';
 import { useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { Lock, Loader } from 'lucide-react'; 
+import { Lock, Loader } from 'lucide-react';
+// Re-use the styled Input component
 import Input from '../components/Input.jsx'; 
+// Import the PasswordStrengthMeter for a consistent UX
+import PasswordStrengthMeter from '../components/PasswordStrengthMeter.jsx';
 
 const ResetPasswordPage = () => {
     const [password, setPassword] = useState("");
@@ -28,7 +31,6 @@ const ResetPasswordPage = () => {
             return;
         }
 
-        // The 'resetPassword' function from the store will return true on success
         const success = await resetPassword(token, password);
 
         if (success) {
@@ -37,7 +39,6 @@ const ResetPasswordPage = () => {
                 navigate('/login');
             }, 2000);
         }
-        // If it fails, the store will automatically set the `error` state and show a toast
     };
 
     return (
@@ -45,16 +46,17 @@ const ResetPasswordPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className='max-w-md w-full bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden'
+            // Main panel styles updated to the new white theme
+            className='max-w-md w-full bg-gradient-to-br from-white to-gray-100 rounded-2xl shadow-2xl overflow-hidden'
         >
             <div className='p-8'>
-                <h2 className='text-3xl font-bold mb-6 text-center bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text'>
+                <h2 className='text-3xl font-bold mb-6 text-center text-green-600'>
                     Choose a New Password
                 </h2>
 
-                {/* Display errors from the store */}
+                {/* Error message style updated for better contrast */}
                 {error && (
-                    <p className="text-red-400 text-center mb-4">{error}</p>
+                    <p className="text-red-600 text-sm text-center -mt-2 mb-4">{error}</p>
                 )}
 
                 <form onSubmit={handleSubmit}>
@@ -62,22 +64,29 @@ const ResetPasswordPage = () => {
                         icon={Lock}
                         type="password"
                         placeholder="New Password"
+                        autoComplete="new-password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
-
                     <Input
                         icon={Lock}
                         type="password"
                         placeholder="Confirm New Password"
+                        autoComplete="new-password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         required
                     />
 
+                    {/* Added PasswordStrengthMeter for good practice and consistency */}
+                    <div className="my-4">
+                        <PasswordStrengthMeter password={password} />
+                    </div>
+
                     <motion.button
-                        className='w-full mt-4 bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 flex items-center justify-center'
+                        // Button styles updated to the new solid green theme
+                        className='w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 flex items-center justify-center'
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         type="submit"

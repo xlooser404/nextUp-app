@@ -43,7 +43,7 @@ const EmailVerificationPage = () => {
         }
     };
 
-    // Make handleSubmit a stable function with useCallback
+    // Using useCallback is a good practice for functions used in useEffect
     const handleSubmit = React.useCallback(async (e) => {
         e.preventDefault();
         const verificationCode = code.join('');
@@ -95,7 +95,7 @@ const EmailVerificationPage = () => {
                         ))}
                     </div>
 
-                    {/* Error message style updated */}
+                    {/* Error message style updated for better contrast */}
                     {error && (
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
@@ -110,7 +110,7 @@ const EmailVerificationPage = () => {
                     <div className="mt-8">
                         <motion.button
                             type="submit"
-                            // Button styles updated
+                            // Button styles updated to the new solid green theme
                             className='w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 flex items-center justify-center'
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}

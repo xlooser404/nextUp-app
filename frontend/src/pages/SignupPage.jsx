@@ -106,7 +106,6 @@ const SignupPage = () => {
                     </div>
 
                     <motion.button
-                        // Button styles updated to a solid green
                         className='w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 flex items-center justify-center'
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}

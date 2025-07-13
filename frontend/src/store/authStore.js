@@ -38,6 +38,7 @@ export const useAuthStore = create((set) => ({
 
   // SIGNUP ACTION
   signup: async (name, email, password) => {
+    toast.dismiss(); // Dismiss any old toasts
     set({ isLoading: true, error: null });
     try {
       const response = await api.post('/auth/signup', { name, email, password });
@@ -46,10 +47,12 @@ export const useAuthStore = create((set) => ({
           isAuthenticated: true,
           isLoading: false
       });
+      return true;
     } catch (error) {
       const errorMessage = error.response?.data?.message || 'Signup failed.';
       set({ error: errorMessage, isLoading: false });
       toast.error(errorMessage);
+      return false;
     }
   },
 
@@ -86,22 +89,24 @@ export const useAuthStore = create((set) => ({
     }
   },
   
-  // VERIFY EMAIL ACTION
+  // VERIFY EMAIL ACTION - THE MAIN FIX IS HERE
   verifyEmail: async (verificationCode) => {
+    // Dismiss any existing toasts immediately.
+    toast.dismiss();
     set({ isLoading: true, error: null });
     try {
         const response = await api.post('/auth/verify-email', { code: verificationCode });
         set({
-            user: response.data.user, // The backend should return the updated user object
+            user: response.data.user,
             isAuthenticated: true,
             isLoading: false,
         });
-        return true; // Indicate success
+        return true;
     } catch (error) {
         const errorMessage = error.response?.data?.message || 'Verification failed.';
         set({ error: errorMessage, isLoading: false });
-        toast.error(errorMessage);
-        return false; // Indicate failure
+        toast.error(errorMessage); // Show the new error toast
+        return false;
     }
   },
 

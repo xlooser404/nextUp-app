@@ -9,6 +9,7 @@ const EmailVerificationPage = () => {
     const [code, setCode] = useState(new Array(6).fill(""));
     const inputRefs = useRef([]);
     const navigate = useNavigate();
+    // Only get what you need from the store to prevent unnecessary re-renders
     const { error, isLoading, verifyEmail } = useAuthStore();
 
     useEffect(() => {
@@ -16,12 +17,13 @@ const EmailVerificationPage = () => {
     }, []);
 
     const handleChange = (index, value) => {
-        if (isNaN(value)) return;
+        if (isNaN(value) || value.length > 1) return;
 
         const newCode = [...code];
         newCode[index] = value;
         setCode(newCode);
 
+        // If a digit was entered and it's not the last input, move focus forward
         if (value && index < 5) {
             inputRefs.current[index + 1]?.focus();
         }
@@ -43,31 +45,30 @@ const EmailVerificationPage = () => {
         }
     };
 
-    // Using useCallback is a good practice for functions used in useEffect
-    const handleSubmit = React.useCallback(async (e) => {
-        e.preventDefault();
+    // This is the primary submit handler, triggered by the form's onSubmit
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Always prevent default form submission
         const verificationCode = code.join('');
+
+        // Do nothing if the code isn't complete or if we're already loading
         if (verificationCode.length !== 6 || isLoading) return;
 
         const success = await verifyEmail(verificationCode);
         if (success) {
             toast.success('Email verified successfully! Welcome!');
-            navigate('/');
+            navigate('/'); // Redirect to the main dashboard
         }
-    }, [code, isLoading, navigate, verifyEmail]);
+        // If it fails, the store handles the error toast automatically.
+    };
 
-    useEffect(() => {
-        if (code.every(digit => digit !== '')) {
-            handleSubmit({ preventDefault: () => {} });
-        }
-    }, [code, handleSubmit]);
+    // --- THE FIX IS HERE ---
+    // The problematic auto-submit useEffect has been REMOVED.
 
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            // Main panel styles updated to the new white theme
             className='max-w-md w-full bg-gradient-to-br from-white to-gray-100 rounded-2xl shadow-2xl overflow-hidden'
         >
             <div className='p-8'>
@@ -88,14 +89,12 @@ const EmailVerificationPage = () => {
                                 value={digit}
                                 onChange={(e) => handleChange(index, e.target.value)}
                                 onKeyDown={(e) => handleKeyDown(index, e)}
-                                // Input styles updated for the new theme
                                 className='w-12 h-14 md:w-14 md:h-16 text-center text-3xl font-bold bg-gray-100 text-gray-800 border-2 border-gray-300 rounded-lg focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors duration-200'
                                 disabled={isLoading}
                             />
                         ))}
                     </div>
 
-                    {/* Error message style updated for better contrast */}
                     {error && (
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
@@ -110,7 +109,6 @@ const EmailVerificationPage = () => {
                     <div className="mt-8">
                         <motion.button
                             type="submit"
-                            // Button styles updated to the new solid green theme
                             className='w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 flex items-center justify-center'
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}

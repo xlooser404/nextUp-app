@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Mail, Loader, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuthStore } from '../store/authStore.js';
-import Input from '../components/Input.jsx'; // Assuming your themed Input is in this file
+import Input from '../components/input.jsx'; // Assuming your themed Input is in this file
 
 const ForgotPasswordPage = () => {
     const [email, setEmail] = useState("");

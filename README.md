@@ -111,16 +111,6 @@ npm install
 # Zustand (for state management)
 # Axios (for API calls)
 # React Hot Toast (for notifications)
-```
-
-Next, create a `.env` file in the `/frontend` directory to tell your React app where the backend API is running.
-
-**/frontend/.env**
-```env
-# The URL of your backend server
-VITE_API_URL=http://localhost:5000/api
-```
-
 ---
 
 ## 🏃 Running the Application

@@ -157,6 +157,22 @@ Your frontend development server will start, and you can now open your browser a
 
 # Create new password
 
+![Image Alt](https://github.com/xlooser404/nextUp-app/blob/1e6e9330576187cc89b8fe5826f4f536567bfe43/choose%20password.png)
+
+# Home Page
+
+![Image Alt](https://github.com/xlooser404/nextUp-app/blob/d2b98f4f556ed3687e34571a1e11710337923470/home.png)
+
+# Home page with task 
+
+![Image Alt](https://github.com/xlooser404/nextUp-app/blob/d2b98f4f556ed3687e34571a1e11710337923470/home2.png)
+
+# Add task Function 
+
+
+ 
+
+
 
 
 

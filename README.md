@@ -1,5 +1,6 @@
 # nextUP - Modern Task Management App
 
+![Image Alt](https://github.com/xlooser404/nextUp-app/blob/d2b98f4f556ed3687e34571a1e11710337923470/home.png)
 
 
 nextUP is a sleek, full-stack web application designed for modern task management. It provides a seamless and secure experience for users to register, log in, and manage their daily tasks through a clean, intuitive, and beautifully designed user interface.

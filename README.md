@@ -132,4 +132,32 @@ npm run dev
 ```
 Your frontend development server will start, and you can now open your browser and navigate to `http://localhost:5173`.
 
+##  UI/UX designs
+
+# Signup Form
+
+![Image Alt](https://github.com/xlooser404/nextUp-app/blob/d2b98f4f556ed3687e34571a1e11710337923470/signup.png)
+
+
+# verify-email
+
+![Image Alt](https://github.com/xlooser404/nextUp-app/blob/d2b98f4f556ed3687e34571a1e11710337923470/verify-email.png)
+
+# Login Page
+
+![Image Alt](https://github.com/xlooser404/nextUp-app/blob/d2b98f4f556ed3687e34571a1e11710337923470/llogin.png)
+
+# Reset-password page 
+
+![Image Alt](https://github.com/xlooser404/nextUp-app/blob/d2b98f4f556ed3687e34571a1e11710337923470/reset-password.png)
+
+# Reset-password page - 2 
+
+![Image Alt](https://github.com/xlooser404/nextUp-app/blob/d2b98f4f556ed3687e34571a1e11710337923470/reset-password-2.png)
+
+# Create new password
+
+
+
+
 

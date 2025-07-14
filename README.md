@@ -169,7 +169,7 @@ Your frontend development server will start, and you can now open your browser a
 
 # Add task Function 
 
-
+![Image Alt](https://github.com/xlooser404/nextUp-app/blob/2a7c25394a070fa2c2f1df78dd1c17c793221be7/addtask.png)
  
 
 

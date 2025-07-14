@@ -1,11 +1,3 @@
-Of course. Here is a clear, modern, and comprehensive README file for your **nextUP** application.
-
-This README is designed to be easy to follow for anyone wanting to set up and run your project. It explains the purpose, features, tech stack, and provides a step-by-step installation guide based on the commands you provided.
-
-You can copy and paste the entire content below into a new file named `README.md` in the root directory of your project.
-
----
-
 # nextUP - Modern Task Management App
 
 
@@ -138,3 +130,5 @@ cd frontend
 npm run dev
 ```
 Your frontend development server will start, and you can now open your browser and navigate to `http://localhost:5173`.
+
+
